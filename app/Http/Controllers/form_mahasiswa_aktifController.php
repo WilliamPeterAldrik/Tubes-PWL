@@ -35,7 +35,7 @@ class form_mahasiswa_aktifController extends Controller
         $form_mahasiswa_aktif = form_mahasiswa_aktif::find($id);
         return view('form_mahasiswa_aktif.edit', compact('form_mahasiswa_aktif'));
     }
-    public function show(Keterangan_lulus $form_mahasiswa_aktif)
+    public function show(form_mahasiswa_aktif $form_mahasiswa_aktif)
     {
         //
     }
