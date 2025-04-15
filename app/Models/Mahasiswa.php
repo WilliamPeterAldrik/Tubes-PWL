@@ -14,7 +14,6 @@ class Mahasiswa extends Model
     protected $primaryKey = 'nip';
 
     public $incrementing = false;
-
     protected $keyType = 'string';
 
     public function dosenProdi(): BelongsTo
