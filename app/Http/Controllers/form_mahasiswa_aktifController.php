@@ -39,10 +39,10 @@ class form_mahasiswa_aktifController extends Controller
     {
         //
     }
-    public function update(Request $request, Keterangan_lulus $form_mahasiswa_aktif)
+    public function update(Request $request, form_mahasiswa_aktif $form_mahasiswa_aktif)
     {
         $validateData = $request->validate([
-            'id_form_mahasiswa_aktif' => ['required', Rule::unique('form_mahasiswa_aktif')->ignore($form_mahasiswa_aktif->id_form_mahasiswa_aktif, 'id_form_mahasiswa_aktif')],
+            'id_form_mahasiswa_aktif' => ['required', Rule::unique('form_mahasiswa_aktif')->ignore($form_mahasiswa_aktif->form_mahasiswa_aktif, 'id_form_mahasiswa_aktif')],
             'semester' => 'required|string',
             'alamat_lengkap' => 'required|string',
             'keperluan' => 'required|string',
@@ -53,9 +53,14 @@ class form_mahasiswa_aktifController extends Controller
         $form_mahasiswa_aktif->update($validateData);
         return redirect('/form_mahasiswa_aktif')->with('success', 'Data berhasil diubah');
     }
-    public function destroy(Keterangan_lulus $form_mahasiswa_aktif)
+    public function destroy(string $id_form_mahasiswa_aktif)
     {
+        $form_mahasiswa_aktif = form_mahasiswa_aktif::find($id_form_mahasiswa_aktif);
+        if ($form_mahasiswa_aktif == null) {
+        return back()->withErrors(['err_msg' => 'Form not found!']);
+        }
         $form_mahasiswa_aktif->delete();
-        return redirect('/form_mahasiswa_aktif')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('form_mahasiswa_aktif-list')
+        ->with('status', 'Form successfully deleted!');
     }
 }

@@ -32,10 +32,10 @@ class DosenController extends Controller
     public function store(Request $request)
     {
         $validatedData = validator($request->all(), [
-            'nip' => ['required', 'string', 'max:9', 'unique:dosen,nip'],
+            'nip' => ['required', 'string', 'max:9', 'unique:dosen.nip'],
             'nama' => ['required', 'string', 'max:150'],
+            'alamat' => ['required', 'string', 'string', 'max:300'],
             'no_hp' => ['required', 'string', 'max:16'],
-            'email' => ['required', 'string', 'email', 'max:300', 'unique:dosen.email'],
             'program_studi' => ['required', 'numeric'],
         ]) -> validate();
         $dosen = new Dosen($validatedData);
@@ -72,16 +72,16 @@ class DosenController extends Controller
     public function update(Request $request, Dosen $dosen)
     {
         $validatedData = $request->validate([
-            'nip' => ['required', 'string', 'max:9', 'unique:dosen,nip'],
+            'nip' => ['required', 'string', 'max:9', 'unique:dosen.nip'],
             'nama' => ['required', 'string', 'max:150'],
+            'alamat' => ['required', 'string', 'string', 'max:300'],
             'no_hp' => ['required', 'string', 'max:16'],
-            'email' => ['required', 'string', 'email', 'max:300', 'unique:dosen.email'],
             'program_studi' => ['required', 'numeric'],
         ]);
 
         $dosen['nama'] = $validatedData['nama'];
+        $dosen['alamat'] = $validatedData['alamat'];
         $dosen['no_hp'] = $validatedData['no_hp'];
-        $dosen['email'] = $validatedData['email'];
         $dosen['program_studi'] = $validatedData['program_studi'];
 
         $dosen->save();

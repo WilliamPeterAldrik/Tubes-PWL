@@ -33,7 +33,7 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nip' => ['required', 'string', 'max:9', 'unique:mahasiswa,nip'],
+            'nip' => ['required', 'string', 'max:9', 'unique:mahasiswa.nip'],
             'nama' => ['required', 'string', 'max:150'],
             'alamat' => ['required', 'string', 'max:300'],
             'no_hp' => ['required', 'string', 'max:16'],
@@ -78,7 +78,7 @@ class MahasiswaController extends Controller
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
         $validatedData = $request->validate([
-            'nip' => ['required', 'string', 'max:9', 'unique:mahasiswa,nip'],
+            'nip' => ['required', 'string', 'max:9', 'unique:mahasiswa.nip'],
             'nama' => ['required', 'string', 'max:150'],
             'alamat' => ['required', 'string', 'max:300'],
             'no_hp' => ['required', 'string', 'max:16'],
@@ -88,6 +88,7 @@ class MahasiswaController extends Controller
         $mahasiswa['nama'] = $validatedData['nama'];
         $mahasiswa['alamat'] = $validatedData['alamat'];
         $mahasiswa['no_hp'] = $validatedData['no_hp'];
+        $mahasiswa['program_studi'] = $validatedData['program_studi'];
 
         $mahasiswa->save();
         return redirect()->route('mahasiswaList')

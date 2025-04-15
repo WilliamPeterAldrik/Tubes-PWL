@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\laporan_hasil_studi;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -15,17 +15,21 @@ class laporan_hasil_studiController extends Controller
     {
         return view('laporan_hasil_studi.create');
     }
+
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'id_laporan_hasil_studi' => 'required|unique:laporan_hasil_studi',
-            'keperluan' => 'required|string',
-            'status' => 'required|string',
-            'nip' => 'required|string|max:9',
-            'nama' => 'required|string|max:255'
+        $validatedData = $request->validate([
+            'id_surat' =>'SRT-' . now()->format('YmdHis'),
+            'keperluan' => 'required',
+            'status' => 'required|in:pending,disetujui,ditolak',
+            'nip' => 'required|max:9|String',
+            'nama' => 'required|max:150|String',
         ]);
-        laporan_hasil_studi::create($validateData);
-        return redirect('/laporan_hasil_studi')->with('success', 'Data berhasil ditambahkan');
+
+        $laporan_hasil_studi = new laporan_hasil_studi($validatedData);
+        $laporan_hasil_studi->save();
+        return redirect()->route('$laporan_hasil_studi-list')
+          ->with('status', '$laporan_hasil_studi successfully added!');
     }
     public function edit($id)
     {

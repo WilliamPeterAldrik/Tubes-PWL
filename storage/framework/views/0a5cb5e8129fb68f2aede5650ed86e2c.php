@@ -63,12 +63,12 @@
             <div class="row gy-4 justify-content-center">
                 <!-- Register -->
                 <div class="auth col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
-                    <h2 class="title"><a href="{{ route('register') }}">Register</a></h2>
+                    <h2 class="title"><a href="<?php echo e(route('register')); ?>">Register</a></h2>
                 </div>
 
                 <!-- Login -->
                 <div class="auth col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="300">
-                    <h2 class="title"><a href="{{ route(name: 'login') }}">Log In</a></h2>
+                    <h2 class="title"><a href="<?php echo e(route(name: 'login')); ?>">Log In</a></h2>
                 </div>
             </div>
         </div>
@@ -99,4 +99,4 @@
 
 </body>
 
-</html>
+</html><?php /**PATH C:\Users\william\Downloads\Tubes-PWL-main(2)\Tubes-PWL-main\resources\views/welcome.blade.php ENDPATH**/ ?>

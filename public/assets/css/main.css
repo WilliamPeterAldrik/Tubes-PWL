@@ -2197,6 +2197,18 @@ section,
   color: var(--accent-color);
 }
 
+.auth {
+  width: 400px; /* Set a fixed width */
+  height: 350px; /* Set the same height to make it square */
+  display: flex; /* Center content inside */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  border: 2px solid #adadad6e; /* Optional: Add a border */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  text-align: center; /* Center text inside */
+  background-color: #ffffff; /* Optional: Add a background color */
+}
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
